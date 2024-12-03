@@ -1,0 +1,26 @@
+﻿@page "/posts"
+@using BlogCMS.Models
+@using Microsoft.EntityFrameworkCore
+@inject BlogDbContext DbContext
+
+<h3>Publicaciones</h3>
+
+<ul>
+    @foreach (var post in posts)
+    {
+        <li>
+            <h4>@post.Title</h4>
+            <p>@post.Content</p>
+            <small>@post.CreatedAt</small>
+        </li>
+    }
+</ul>
+
+@code {
+    private List<Post> posts = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        posts = await DbContext.Posts.ToListAsync();
+    }
+}

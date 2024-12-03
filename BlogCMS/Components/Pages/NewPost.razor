@@ -1,0 +1,25 @@
+﻿@page "/new-post"
+@using BlogCMS.Models
+@inject BlogDbContext DbContext
+@inject NavigationManager Navigation
+
+<h3>Nueva Publicación</h3>
+
+<EditForm Model="post" OnValidSubmit="HandleValidSubmit">
+    <InputText id="title" @bind-Value="post.Title" placeholder="Título" />
+    <br />
+    <InputTextArea id="content" @bind-Value="post.Content" placeholder="Contenido" />
+    <br />
+    <button type="submit">Crear Publicación</button>
+</EditForm>
+
+@code {
+    private Post post = new();
+
+    private async Task HandleValidSubmit()
+    {
+        DbContext.Posts.Add(post);
+        await DbContext.SaveChangesAsync();
+        Navigation.NavigateTo("/posts");
+    }
+}
