@@ -1,4 +1,4 @@
-# BlogCMS
+# BlogCMS - Proyecto Blazor Server
 
 ![image](https://github.com/user-attachments/assets/329b7c10-963d-4b95-b8e5-8cc21db0d7d5)
 
